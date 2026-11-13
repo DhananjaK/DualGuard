@@ -1,0 +1,6 @@
+SourceFile,benign_flows,benign_false_alarm_rate,attack_flows,attack_detection_rate
+Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,95064,0.3438841201716738,128011,0.8536375780206389
+Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,121554,0.023536864274314298,90130,0.9957172972373238
+Friday-WorkingHours-Morning.pcap_ISCX.csv,178126,0.017925513400626522,1948,0.26540041067761805
+Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv,241799,0.17813142320687844,36,0.8611111111111112
+Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv,152306,0.01572492219610521,2143,0.04059729351376575

@@ -1,0 +1,14 @@
+.git
+.venv
+**/__pycache__
+.pytest_cache
+notebooks
+web
+docs
+tests
+data/raw
+data/processed/*
+!data/processed/replay_A.parquet
+!data/processed/replay_B.parquet
+reports/figures
+*.zip

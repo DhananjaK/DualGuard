@@ -1,0 +1,9 @@
+{
+  "rows_loaded": 2830743,
+  "dropped_duplicate_column": "Fwd Header Length.1",
+  "rows_dropped_nan_or_inf": 2867,
+  "rows_dropped_conflicting_labels": 6790,
+  "rows_dropped_duplicates": 324542,
+  "rows_final": 2496544,
+  "n_features": 77
+}

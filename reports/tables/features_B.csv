@@ -1,0 +1,78 @@
+feature,status
+Flow Duration,used
+Total Fwd Packets,used
+Total Backward Packets,used
+Total Length of Fwd Packets,used
+Total Length of Bwd Packets,used
+Fwd Packet Length Max,used
+Fwd Packet Length Min,used
+Fwd Packet Length Mean,used
+Fwd Packet Length Std,used
+Bwd Packet Length Max,used
+Bwd Packet Length Min,used
+Bwd Packet Length Mean,used
+Bwd Packet Length Std,used
+Flow Bytes/s,used
+Flow Packets/s,used
+Flow IAT Mean,used
+Flow IAT Std,used
+Flow IAT Max,used
+Flow IAT Min,used
+Fwd IAT Total,used
+Fwd IAT Mean,used
+Fwd IAT Std,used
+Fwd IAT Max,used
+Fwd IAT Min,used
+Bwd IAT Total,used
+Bwd IAT Mean,used
+Bwd IAT Std,used
+Bwd IAT Max,used
+Bwd IAT Min,used
+Fwd PSH Flags,used
+Fwd Header Length,used
+Bwd Header Length,used
+Fwd Packets/s,used
+Bwd Packets/s,used
+Min Packet Length,used
+Max Packet Length,used
+Packet Length Mean,used
+Packet Length Std,used
+Packet Length Variance,used
+FIN Flag Count,used
+SYN Flag Count,used
+RST Flag Count,used
+PSH Flag Count,used
+ACK Flag Count,used
+URG Flag Count,used
+ECE Flag Count,used
+Down/Up Ratio,used
+Average Packet Size,used
+Avg Fwd Segment Size,used
+Avg Bwd Segment Size,used
+Subflow Fwd Packets,used
+Subflow Fwd Bytes,used
+Subflow Bwd Packets,used
+Subflow Bwd Bytes,used
+Init_Win_bytes_forward,used
+Init_Win_bytes_backward,used
+act_data_pkt_fwd,used
+min_seg_size_forward,used
+Active Mean,used
+Active Std,used
+Active Max,used
+Active Min,used
+Idle Mean,used
+Idle Std,used
+Idle Max,used
+Idle Min,used
+Bwd PSH Flags,dropped: constant in train
+Fwd URG Flags,dropped: constant in train
+Bwd URG Flags,dropped: constant in train
+CWE Flag Count,dropped: constant in train
+Fwd Avg Bytes/Bulk,dropped: constant in train
+Fwd Avg Packets/Bulk,dropped: constant in train
+Fwd Avg Bulk Rate,dropped: constant in train
+Bwd Avg Bytes/Bulk,dropped: constant in train
+Bwd Avg Packets/Bulk,dropped: constant in train
+Bwd Avg Bulk Rate,dropped: constant in train
+Destination Port,dropped: config

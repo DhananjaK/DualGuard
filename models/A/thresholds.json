@@ -1,0 +1,10 @@
+{
+  "budget": 0.02,
+  "tau": 0.5,
+  "n_benign_val": 310731,
+  "ae": 0.0279751718044281,
+  "ae_parallel": 0.028886225074529648,
+  "lgbm_benign_false_alarms": 294,
+  "lgbm_attack_score": 0.002658910561890604,
+  "default_mode": "parallel"
+}

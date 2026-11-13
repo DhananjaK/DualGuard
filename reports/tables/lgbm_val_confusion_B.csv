@@ -1,0 +1,5 @@
+true,BENIGN,BruteForce,DoS,Heartbleed
+BENIGN,192362,1,41,0
+BruteForce,7,1365,0,0
+DoS,6,0,29031,0
+Heartbleed,0,0,0,2

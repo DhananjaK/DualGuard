@@ -1,0 +1,43 @@
+# DualGuard API image: CPU-only, non-root, models baked in.
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app/src:/app \
+    HOME=/tmp \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# LightGBM needs the GNU OpenMP runtime on Linux.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends libgomp1 \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# 1. PyTorch from the CPU-only index (~200 MB instead of ~2 GB of CUDA libraries).
+COPY docker/torch-version.txt /tmp/torch-version.txt
+RUN pip install --no-cache-dir "torch==$(cat /tmp/torch-version.txt)" \
+        --index-url https://download.pytorch.org/whl/cpu
+
+# 2. Everything else, pinned to the training versions (scripts/freeze_runtime.py).
+COPY docker/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+# 3. Application code and frozen artefacts (layers ordered from least to most often changed).
+COPY config.yaml ./
+COPY src ./src
+COPY api ./api
+COPY models ./models
+COPY samples ./samples
+COPY reports/tables ./reports/tables
+COPY data/processed/replay_A.parquet data/processed/replay_B.parquet ./data/processed/
+
+# 4. Run as an unprivileged user.
+RUN useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin dualguard
+USER 10001
+
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=3s --start-period=20s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)" || exit 1
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

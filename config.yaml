@@ -1,0 +1,59 @@
+# DualGuard – single source of truth for paths and parameters.
+# Change values here, never hard-code them in scripts.
+
+seed: 42
+
+paths:
+  raw_dir: data/raw            # CIC-IDS2017 MachineLearningCVE CSVs go here
+  processed_dir: data/processed
+  models_dir: models
+  tables_dir: reports/tables
+  figures_dir: reports/figures
+
+data:
+  # Scenario A: random stratified split (known attacks)
+  scenario_a:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+  # Scenario B: temporal split (unseen attack families)
+  scenario_b:
+    train_days: [Monday, Tuesday, Wednesday]
+    test_days: [Thursday, Friday]
+    val_fraction_of_train: 0.15
+
+preprocess:
+  # Destination Port is an identifier, not a measurement (443 and 444 are numerically
+  # close but unrelated) and lets models memorise "attack X uses port Y" shortcuts.
+  drop_features: ["Destination Port"]
+  # Cap standardised values at +/-clip_z. Rule fixed BEFORE looking at the diagnostics:
+  # clip if <1% of benign training rows exceed |z|>10. Measured: 0.13% (A), 0.12% (B).
+  # See reports/tables/feature_diagnostics_<A|B>.csv
+  clip_z: 10
+
+autoencoder:
+  hidden: [64, 32]      # encoder layer sizes; the decoder mirrors them
+  bottleneck: 16        # size of the compressed representation
+  epochs: 100           # upper limit only; early stopping decides (B hit the old cap of 30 still improving)
+  batch_size: 1024
+  lr: 0.001             # Adam learning rate
+  patience: 3           # stop after 3 epochs without validation improvement
+  threads: 8            # CPU threads (CPU training for reproducibility)
+
+lightgbm:
+  n_estimators: 1000         # upper limit; early stopping on validation decides
+  learning_rate: 0.05
+  num_leaves: 63             # max leaves per tree (model complexity)
+  min_child_samples: 10      # min rows per leaf; low because Heartbleed has only 8 train rows
+  feature_fraction: 0.8      # each tree sees a random 80% of features
+  bagging_fraction: 0.8      # each tree sees a random 80% of rows
+  bagging_freq: 1
+  early_stopping_rounds: 30
+  class_weight: sqrt_balanced  # weight = sqrt(n_largest / n_class): helps rare families without overfitting them
+  threads: 8
+
+thresholds:
+  benign_false_alarm_budget: 0.02   # max share of benign VALIDATION flows flagged
+  tau: 0.5      # LightGBM must give its top ATTACK family >= 50% to call KNOWN_ATTACK (fixed a priori)
+  # Default mode rule, fixed before evaluation: pick the mode with the higher macro
+  # detection rate on VALIDATION at the budget.

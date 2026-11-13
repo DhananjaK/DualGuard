@@ -1,0 +1,9 @@
+,parallel,parallel,parallel,parallel,parallel,cascade,cascade,cascade,cascade
+output,?,BENIGN,BruteForce,DoS,Heartbleed,?,BENIGN,DoS,Heartbleed
+true,,,,,,,,,
+BENIGN,84029,704622,6,187,5,84196,704637,11,5
+Bot,516,1432,0,0,0,517,1431,0,0
+DDoS,42405,18736,0,66870,0,42407,18736,66868,0
+Infiltration,31,5,0,0,0,31,5,0,0
+PortScan,89650,332,0,148,0,89660,386,84,0
+WebAttack,87,256,5,1795,0,87,2056,0,0

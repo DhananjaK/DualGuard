@@ -1,0 +1,27 @@
+# Start everything:  docker compose up -d --build
+# Dashboard: http://localhost:8080      API docs: http://localhost:8000/docs
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    image: dualguard-api:1.0
+    ports: ["8000:8000"]          # optional: direct access to /docs
+    read_only: true               # container filesystem cannot be modified
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+
+  web:
+    build: ./web
+    image: dualguard-web:1.0
+    ports: ["8080:8080"]
+    depends_on:
+      api:
+        condition: service_healthy   # wait until /health answers
+    read_only: true
+    tmpfs: [/tmp, /var/cache/nginx]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped

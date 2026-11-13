@@ -1,0 +1,10 @@
+Family,train,val,test
+BENIGN,1090283,192404,788849
+Bot,0,0,1948
+BruteForce,7778,1372,0
+DDoS,0,0,128011
+DoS,164542,29037,0
+Heartbleed,9,2,0
+Infiltration,0,0,36
+PortScan,0,0,90130
+WebAttack,0,0,2143

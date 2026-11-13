@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data (too large / not ours to redistribute)
+data/raw/*
+data/processed/*
+!data/processed/replay_A.parquet
+!data/processed/replay_B.parquet
+!**/.gitkeep
+
+# Frontend
+web/node_modules/
+web/dist/
+
+# Working notes and drafts (not part of the code submission)
+docs/
+terminal_out
+
+# OS / editors
+.DS_Store
+.vscode/

@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: dualguard
+Version: 0.1.0
+Summary: Hybrid two-stage network intrusion detector (Autoencoder + LightGBM) on CIC-IDS2017
+Requires-Python: <3.13,>=3.11
+Requires-Dist: numpy>=1.26
+Requires-Dist: pandas>=2.2
+Requires-Dist: pyarrow>=15
+Requires-Dist: scikit-learn>=1.4
+Requires-Dist: lightgbm>=4.3
+Requires-Dist: torch>=2.2
+Requires-Dist: pyyaml>=6
+Requires-Dist: joblib>=1.3
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: fastapi>=0.110
+Requires-Dist: uvicorn[standard]>=0.29
+Requires-Dist: python-multipart>=0.0.9
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: httpx>=0.27; extra == "dev"
+Requires-Dist: jupyterlab>=4; extra == "dev"
